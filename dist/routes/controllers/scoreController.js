@@ -7,6 +7,5 @@ export function getPlayerScores(req, res) {
         { scoreId: '1', value: 100, playerId: playerId },
         { scoreId: '2', value: 200, playerId: playerId },
     ];
-
-    res.json({ playerId, scores });
+    return res.json({ playerId, scores });
 }

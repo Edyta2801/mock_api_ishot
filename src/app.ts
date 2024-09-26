@@ -3,7 +3,7 @@ import sessionRouter from './routes/session.js';
 import playerRouter from './routes/player.js';
 import scoreRouter from './routes/score.js';
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use('/Session', sessionRouter);
 app.use('/Player', playerRouter);
