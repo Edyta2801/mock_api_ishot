@@ -1,6 +1,7 @@
-import express from 'express';
-const router = express.Router();
-import { getSessionStatus } from './controllers/sessionController.js';
+import express, { Router } from 'express';
+import { getSessionStatus } from '../controllers/sessionController';
+
+const router: Router = express.Router();
 
 router.get('/GetSessionStatus', getSessionStatus);
 
