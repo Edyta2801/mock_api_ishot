@@ -1,37 +1,14 @@
-import { Request, Response, NextFunction } from 'express';
-
-interface PlayerScoresQuery {
-    playerID?: string;
-}
-export interface ScoreDto {
-    playDate: Date;
-    scoreID: string;
-    operatorID: string;
-    playerID: string;
-    score: string;
-    nickname?: string;
-}
-
-export interface PlayerDto {
-    playerId: string;
-    nickname: string;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
-}
-export function getPlayerScores(req: Request, res: Response) {
+export function getPlayerScores(req, res) {
     const playerId = req.query.playerID;
-
     if (!playerId) {
         return res.status(400).json({ error: 'playerID is required' });
     }
-
-    const scores: ScoreDto[] = [
+    const scores = [
         {
             playDate: new Date(),
             scoreID: '1',
             operatorID: 'OP1',
-            playerID: playerId as string,
+            playerID: playerId,
             score: '100',
             nickname: 'your-nickname',
         },
@@ -39,34 +16,22 @@ export function getPlayerScores(req: Request, res: Response) {
             playDate: new Date(),
             scoreID: '2',
             operatorID: 'OP1',
-            playerID: playerId as string,
+            playerID: playerId,
             score: '200',
             nickname: 'nickname2',
         },
     ];
-
     return res.json({ playerId, scores });
 }
-
-export async function fetchScores(
-    req: Request,
-    res: Response,
-    next: NextFunction
-): Promise<void> {
+export async function fetchScores(req, res, next) {
     try {
         const { sessionId, playerId } = req.params;
-
         if (!sessionId || !playerId) {
             res.status(400).json({ error: 'Missing sessionId or playerId' });
             return;
         }
-        console.log(
-            'Fetching scores for session:',
-            sessionId,
-            'and player:',
-            playerId
-        );
-        const exampleScores: ScoreDto[] = [
+        console.log('Fetching scores for session:', sessionId, 'and player:', playerId);
+        const exampleScores = [
             {
                 playDate: new Date('2024-09-25'),
                 scoreID: '1',
@@ -84,14 +49,15 @@ export async function fetchScores(
                 nickname: 'another-nickname',
             },
         ];
-
         const playerSessionId = `${playerId}-${sessionId}`;
-
         res.status(200).json({
-            scores: exampleScores,
-            playerSessionId,
+            data: {
+                scores: exampleScores,
+                playerSessionId,
+            },
         });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error fetching scores:', error);
         next(error);
     }

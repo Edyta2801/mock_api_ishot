@@ -17,9 +17,9 @@ export function getSessionStatus(req: Request, res: Response): void {
 
     let sessionStatus: SessionStatus;
 
-    if (sessionId === '12345') {
+    if (sessionId === '1') {
         sessionStatus = SessionStatus.OPEN;
-    } else if (sessionId === 'P') {
+    } else if (sessionId === '2') {
         sessionStatus = SessionStatus.PLAYING;
     } else {
         sessionStatus = SessionStatus.CLOSED;

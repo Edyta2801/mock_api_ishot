@@ -1,4 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import sessionRouter from './routes/session.js';
 import playerRouter from './routes/player.js';
 import scoreRouter from './routes/score.js';
@@ -6,11 +7,19 @@ import scoreRouter from './routes/score.js';
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(
+    cors({
+        origin: 'http://localhost:4200',
+        methods: ['GET', 'POST'],
+        credentials: true,
+    })
+);
+
 app.use(express.json());
 
 app.use('/Session', sessionRouter);
 app.use('/Player', playerRouter);
-app.use('/Score', scoreRouter);
+app.use('/api', scoreRouter);
 app.use(playerRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -25,5 +34,3 @@ app.use((req: Request, res: Response) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-
-export default app;

@@ -11,7 +11,8 @@ export const Player = {
         sessionID: string;
         nickname: string;
     }) => {
-        const playerID = uuidv4();
+        // const playerID = uuidv4();
+        const playerID = '1';
         players.push({ playerID, sessionID, nickname });
         return playerID;
     },
