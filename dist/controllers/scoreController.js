@@ -51,10 +51,8 @@ export async function fetchScores(req, res, next) {
         ];
         const playerSessionId = `${playerId}-${sessionId}`;
         res.status(200).json({
-            data: {
-                scores: exampleScores,
-                playerSessionId,
-            },
+            scores: exampleScores,
+            playerSessionId,
         });
     }
     catch (error) {

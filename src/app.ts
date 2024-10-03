@@ -20,6 +20,8 @@ app.use(express.json());
 app.use('/Session', sessionRouter);
 app.use('/Player', playerRouter);
 app.use('/api', scoreRouter);
+app.use('/Score', scoreRouter);
+
 app.use(playerRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

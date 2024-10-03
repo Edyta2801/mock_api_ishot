@@ -1,8 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 
-interface PlayerScoresQuery {
-    playerID?: string;
-}
 export interface ScoreDto {
     playDate: Date;
     scoreID: string;
@@ -19,6 +16,44 @@ export interface PlayerDto {
     lastName: string;
     emailAddress: string;
 }
+
+export type PlayerScore = {
+    scoreID: string;
+    sessionId: string;
+    points: number;
+    rank: number;
+    date: Date;
+};
+
+//  `${API_URL}/Score/GetRankedPlayerScores?playerID=${playerId}`
+export function GetRankedPlayerScores(req: Request, res: Response) {
+    const playerId = req.query.playerID;
+
+    if (!playerId) {
+        return res.status(400).json({ error: 'playerID is required' });
+    }
+
+    const scores: PlayerScore[] = [
+        {
+            scoreID: '1',
+            sessionId: '1',
+            points: 300,
+            rank: 20,
+            date: new Date(),
+        },
+        {
+            scoreID: '3',
+            sessionId: '2',
+            points: 100,
+            rank: 10,
+            date: new Date(),
+        },
+    ];
+
+    return res.json({ playerId, scores });
+}
+
+// `${API_URL}/Score/GetPlayerScores?playerID=${playerId}`
 export function getPlayerScores(req: Request, res: Response) {
     const playerId = req.query.playerID;
 
@@ -48,6 +83,7 @@ export function getPlayerScores(req: Request, res: Response) {
     return res.json({ playerId, scores });
 }
 
+// `http://localhost:3000/api/sessions/${sessionId}/${playerId}/scores`;
 export async function fetchScores(
     req: Request,
     res: Response,

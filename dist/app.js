@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import sessionRouter from './routes/session.js';
 import playerRouter from './routes/player.js';
 import scoreRouter from './routes/score.js';
@@ -24,7 +25,3 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-export default app;
-function cors(arg0) {
-    throw new Error('Function not implemented.');
-}
