@@ -83,6 +83,35 @@ export function getPlayerScores(req: Request, res: Response) {
     return res.json({ playerId, scores });
 }
 
+export function getDetailedPlayerScores(req: Request, res: Response) {
+    const playerId = req.query.playerID;
+
+    if (!playerId) {
+        return res.status(400).json({ error: 'playerID is required' });
+    }
+
+    const scores: ScoreDto[] = [
+        {
+            playDate: new Date(),
+            scoreID: '1',
+            operatorID: 'OP1',
+            playerID: playerId as string,
+            score: '100',
+            nickname: 'nick',
+        },
+        {
+            playDate: new Date(),
+            scoreID: '2',
+            operatorID: 'OP1',
+            playerID: playerId as string,
+            score: '200',
+            nickname: 'nickname2',
+        },
+    ];
+
+    return res.json({ playerId, scores });
+}
+
 // `http://localhost:3000/api/sessions/${sessionId}/${playerId}/scores`;
 export async function fetchScores(
     req: Request,
@@ -163,6 +192,7 @@ export async function fetchScores(
 //     return res.json({ playerId, scores });
 // }
 
+// `${API_URL}/Score/GetRankedPlayerScores?playerID=${playerId}`
 export function GetRankedPlayerScores(req: Request, res: Response) {
     const playerId = req.query.playerID;
 
@@ -212,3 +242,64 @@ export function GetRankedPlayerScores(req: Request, res: Response) {
         return res.json({ playerId, scores: scoreDtos });
     }
 }
+
+// `${API_URL}/Score/GetScore?scoreID=${scoreId}`
+export function getScoreById(req: Request, res: Response) {
+    const scoreId = req.query.scoreID;
+
+    if (!scoreId) {
+        return res.status(400).json({ error: 'scoreID is required' });
+    }
+
+    const scores: ScoreDto[] = [
+        {
+            playDate: new Date(),
+            scoreID: '1',
+            operatorID: 'OP1',
+            playerID: '1',
+            score: '100',
+            nickname: 'nick',
+        },
+        {
+            playDate: new Date(),
+            scoreID: '2',
+            operatorID: 'OP1',
+            playerID: '2',
+            score: '200',
+            nickname: 'nickname2',
+        },
+    ];
+
+    return res.json({ scoreId, scores });
+}
+
+// `${API_URL}/Score/GetDetailedScore?scoreID=${scoreId}`
+export function getDetailedScoreById(req: Request, res: Response) {
+    const scoreId = req.query.scoreID;
+
+    if (!scoreId) {
+        return res.status(400).json({ error: 'scoreID is required' });
+    }
+
+    const scores: ScoreDto[] = [
+        {
+            playDate: new Date(),
+            scoreID: '1',
+            operatorID: 'OP1',
+            playerID: '1',
+            score: '100',
+            nickname: 'nick',
+        },
+        {
+            playDate: new Date(),
+            scoreID: '2',
+            operatorID: 'OP1',
+            playerID: '2',
+            score: '200',
+            nickname: 'nickname2',
+        },
+    ];
+
+    return res.json({ scoreId, scores });
+}
+
