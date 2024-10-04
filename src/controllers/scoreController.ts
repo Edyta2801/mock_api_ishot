@@ -1,21 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 
-export interface ScoreDto {
+export type ScoreDto = {
     playDate: Date;
     scoreID: string;
     operatorID: string;
     playerID: string;
     score: string;
     nickname?: string;
-}
-
-export interface PlayerDto {
-    playerId: string;
-    nickname: string;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
-}
+};
 
 export type PlayerScore = {
     scoreID: string;
@@ -302,4 +294,3 @@ export function getDetailedScoreById(req: Request, res: Response) {
 
     return res.json({ scoreId, scores });
 }
-

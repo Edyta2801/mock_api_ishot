@@ -32,18 +32,66 @@ export const registerPlayer = async (req: Request, res: Response) => {
     }
 };
 
-export function getPlayerData(
-    req: { query: { playerID: any } },
-    res: { json: (arg0: { playerId: any; name: string; rank: number }) => void }
-) {
+export type PlayerDto = {
+    playerId: string;
+    nickname: string;
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+};
+
+// `${API_URL}/Player/GetPlayer?playerID=${playerId}`
+export function getPlayerData(req: Request, res: Response) {
     const playerId = req.query.playerID;
-    res.json({ playerId: playerId, name: 'John Doe', rank: 5 });
+
+    if (!playerId) {
+        return res.status(400).json({ error: 'playerID is required' });
+    }
+
+    const data: PlayerDto = {
+        playerId: '1',
+        nickname: 'nick',
+        firstName: 'Nick',
+        lastName: 'Nikola',
+        emailAddress: 'email@email.com',
+    };
+
+    return res.json(data);
 }
 
-export function updatePlayerData(
-    req: { body: any },
-    res: { json: (arg0: { success: boolean; updatedPlayer: any }) => void }
-) {
-    const playerData = req.body;
-    res.json({ success: true, updatedPlayer: playerData });
+export type UpdatePlayerDto = {
+    playerId?: string;
+    nickname?: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    clerkId?: string;
+    clerkUsername?: string;
+    imageURL?: string;
+};
+
+export type UpdatePlayerResponse = {
+    playerId: string;
+    nickname: string;
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+};
+
+//   `${API_URL}/Player/UpdatePlayerData`,
+export function updatePlayerData(req: Request, res: Response) {
+    const { playerId, nickname, firstName, lastName, emailAddress } = req.body;
+
+    if (!playerId || !nickname || !firstName || !lastName || !emailAddress) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+    const updatedData = {
+        playerId: '1',
+        nickname: 'UpdatedNick',
+        firstName: 'UpdatedFirstName',
+        lastName: 'UpdatedLastName',
+        emailAddress: 'updated@email.com',
+    };
+
+    return res.json(updatedData);
 }

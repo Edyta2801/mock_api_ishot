@@ -3,6 +3,7 @@ import cors from 'cors';
 import sessionRouter from './routes/session.js';
 import playerRouter from './routes/player.js';
 import scoreRouter from './routes/score.js';
+import { updatePlayerData } from './controllers/playerController.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(
     cors({
         origin: 'http://localhost:4200',
-        methods: ['GET', 'POST'],
+        methods: ['GET', 'POST', 'PUT'],
         credentials: true,
     })
 );
