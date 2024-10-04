@@ -14,6 +14,7 @@ app.use(express.json());
 app.use('/Session', sessionRouter);
 app.use('/Player', playerRouter);
 app.use('/api', scoreRouter);
+app.use('/Score', scoreRouter);
 app.use(playerRouter);
 app.use((err, req, res, next) => {
     console.error(err.stack);

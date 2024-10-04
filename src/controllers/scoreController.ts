@@ -132,3 +132,33 @@ export async function fetchScores(
         next(error);
     }
 }
+
+//  `${API_URL}/Score/GetRankedPlayerScores?playerID=${playerId}`
+export function getRankedPlayerScores(req: Request, res: Response) {
+    const playerId = req.query.playerID;
+
+    if (!playerId) {
+        return res.status(400).json({ error: 'playerID is required' });
+    }
+
+    const scores: ScoreDto[] = [
+        {
+            playDate: new Date(),
+            scoreID: '1',
+            operatorID: 'OP1',
+            playerID: playerId as string,
+            score: '500',
+            nickname: 'nick',
+        },
+        {
+            playDate: new Date(),
+            scoreID: '2',
+            operatorID: 'OP2',
+            playerID: playerId as string,
+            score: '600',
+            nickname: 'nickname',
+        },
+    ];
+
+    return res.json({ playerId, scores });
+}
