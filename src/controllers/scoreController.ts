@@ -26,32 +26,32 @@ export type PlayerScore = {
 };
 
 //  `${API_URL}/Score/GetRankedPlayerScores?playerID=${playerId}`
-export function GetRankedPlayerScores(req: Request, res: Response) {
-    const playerId = req.query.playerID;
+// export function GetRankedPlayerScores(req: Request, res: Response) {
+//     const playerId = req.query.playerID;
 
-    if (!playerId) {
-        return res.status(400).json({ error: 'playerID is required' });
-    }
+//     if (!playerId) {
+//         return res.status(400).json({ error: 'playerID is required' });
+//     }
 
-    const scores: PlayerScore[] = [
-        {
-            scoreID: '1',
-            sessionId: '1',
-            points: 300,
-            rank: 20,
-            date: new Date(),
-        },
-        {
-            scoreID: '3',
-            sessionId: '2',
-            points: 100,
-            rank: 10,
-            date: new Date(),
-        },
-    ];
+//     const scores: PlayerScore[] = [
+//         {
+//             scoreID: '1',
+//             sessionId: '1',
+//             points: 300,
+//             rank: 20,
+//             date: new Date(),
+//         },
+//         {
+//             scoreID: '3',
+//             sessionId: '2',
+//             points: 100,
+//             rank: 10,
+//             date: new Date(),
+//         },
+//     ];
 
-    return res.json({ playerId, scores });
-}
+//     return res.json({ playerId, scores });
+// }
 
 // `${API_URL}/Score/GetPlayerScores?playerID=${playerId}`
 export function getPlayerScores(req: Request, res: Response) {
@@ -134,31 +134,81 @@ export async function fetchScores(
 }
 
 //  `${API_URL}/Score/GetRankedPlayerScores?playerID=${playerId}`
-export function getRankedPlayerScores(req: Request, res: Response) {
+// export function getRankedPlayerScores(req: Request, res: Response) {
+//     const playerId = req.query.playerID;
+
+//     if (!playerId) {
+//         return res.status(400).json({ error: 'playerID is required' });
+//     }
+
+//     const scores: ScoreDto[] = [
+//         {
+//             playDate: new Date(),
+//             scoreID: '1',
+//             operatorID: 'OP1',
+//             playerID: playerId as string,
+//             score: '500',
+//             nickname: 'nick',
+//         },
+//         {
+//             playDate: new Date(),
+//             scoreID: '2',
+//             operatorID: 'OP2',
+//             playerID: playerId as string,
+//             score: '600',
+//             nickname: 'nickname',
+//         },
+//     ];
+
+//     return res.json({ playerId, scores });
+// }
+
+export function GetRankedPlayerScores(req: Request, res: Response) {
     const playerId = req.query.playerID;
 
     if (!playerId) {
         return res.status(400).json({ error: 'playerID is required' });
     }
 
-    const scores: ScoreDto[] = [
-        {
-            playDate: new Date(),
-            scoreID: '1',
-            operatorID: 'OP1',
-            playerID: playerId as string,
-            score: '500',
-            nickname: 'nick',
-        },
-        {
-            playDate: new Date(),
-            scoreID: '2',
-            operatorID: 'OP2',
-            playerID: playerId as string,
-            score: '600',
-            nickname: 'nickname',
-        },
-    ];
+    const dataType = req.headers['x-data-type'];
 
-    return res.json({ playerId, scores });
+    if (dataType === 'PlayerScore') {
+        const playerScores: PlayerScore[] = [
+            {
+                scoreID: '1',
+                sessionId: '1',
+                points: 300,
+                rank: 20,
+                date: new Date(),
+            },
+            {
+                scoreID: '3',
+                sessionId: '2',
+                points: 100,
+                rank: 10,
+                date: new Date(),
+            },
+        ];
+        return res.json({ playerId, scores: playerScores });
+    } else {
+        const scoreDtos: ScoreDto[] = [
+            {
+                playDate: new Date(),
+                scoreID: '1',
+                operatorID: 'OP1',
+                playerID: playerId as string,
+                score: '500',
+                nickname: 'nick',
+            },
+            {
+                playDate: new Date(),
+                scoreID: '2',
+                operatorID: 'OP2',
+                playerID: playerId as string,
+                score: '600',
+                nickname: 'nickname',
+            },
+        ];
+        return res.json({ playerId, scores: scoreDtos });
+    }
 }

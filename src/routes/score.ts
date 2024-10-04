@@ -3,13 +3,13 @@ import {
     getPlayerScores,
     GetRankedPlayerScores,
     fetchScores,
-    getRankedPlayerScores,
+    // getRankedPlayerScores,
 } from '../controllers/scoreController.js';
 
 const router: Router = express.Router();
 router.get('/GetPlayerScores', getPlayerScores);
 router.get('/GetRankedPlayerScores', GetRankedPlayerScores);
-router.get('/GetRankedPlayerScores', getRankedPlayerScores);
+// router.get('/GetRankedPlayerScores', getRankedPlayerScores);
 router.get('/sessions/:sessionId/:playerId/scores', fetchScores);
 
 export default router;
