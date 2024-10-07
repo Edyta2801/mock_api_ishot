@@ -12,6 +12,7 @@ export interface SessionDto {
     sessionID: string;
 }
 
+// `${API_URL}/Session/GetSessionStatus?sessionID=${sessionId}`
 export function getSessionStatus(req: Request, res: Response): void {
     const sessionId: string = req.query.sessionID as string;
 
@@ -32,4 +33,42 @@ export function getSessionStatus(req: Request, res: Response): void {
     };
 
     res.json(sessionData);
+}
+
+export type PlayerDto = {
+    playerId: string;
+    nickname: string;
+    firstName: string;
+    lastName: string;
+    emailAddress: string;
+};
+
+export type SessionByPlayerDto = Pick<SessionDto, 'status' | 'sessionID'> & {
+    status: SessionDto['status'];
+    playerIDs: string[];
+    scoreIDs: string[];
+};
+
+//  `${API_URL}/Session/GetSessionByPlayerID?playerID=${playerId}`
+export function getSessionByPlayerID(req: Request, res: Response) {
+    const playerId =
+        req.query.playerID || req.body.playerID || req.params.playerID;
+
+    if (!playerId) {
+        return res.status(400).json({ error: 'playerID is required' });
+    }
+
+    try {
+        const data: SessionByPlayerDto = {
+            sessionID: 'example-session-id',
+            status: SessionStatus.OPEN,
+            playerIDs: [playerId],
+            scoreIDs: ['1', '2'],
+        };
+
+        return res.json(data);
+    } catch (error) {
+        console.error('Error fetching session data:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
