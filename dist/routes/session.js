@@ -1,5 +1,6 @@
 import express from 'express';
-import { getSessionStatus } from '../controllers/sessionController';
+import { getSessionByPlayerID, getSessionStatus, } from '../controllers/sessionController';
 const router = express.Router();
 router.get('/GetSessionStatus', getSessionStatus);
+router.get('/GetSessionByPlayerID', getSessionByPlayerID);
 export default router;

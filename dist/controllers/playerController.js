@@ -23,11 +23,33 @@ export const registerPlayer = async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+// `${API_URL}/Player/GetPlayer?playerID=${playerId}`
 export function getPlayerData(req, res) {
     const playerId = req.query.playerID;
-    res.json({ playerId: playerId, name: 'John Doe', rank: 5 });
+    if (!playerId) {
+        return res.status(400).json({ error: 'playerID is required' });
+    }
+    const data = {
+        playerId: '1',
+        nickname: 'nick',
+        firstName: 'Nick',
+        lastName: 'Nikola',
+        emailAddress: 'email@email.com',
+    };
+    return res.json(data);
 }
+//   `${API_URL}/Player/UpdatePlayerData`,
 export function updatePlayerData(req, res) {
-    const playerData = req.body;
-    res.json({ success: true, updatedPlayer: playerData });
+    const { playerId, nickname, firstName, lastName, emailAddress } = req.body;
+    if (!playerId || !nickname || !firstName || !lastName || !emailAddress) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+    const updatedData = {
+        playerId: '1',
+        nickname: 'UpdatedNick',
+        firstName: 'UpdatedFirstName',
+        lastName: 'UpdatedLastName',
+        emailAddress: 'updated@email.com',
+    };
+    return res.json(updatedData);
 }

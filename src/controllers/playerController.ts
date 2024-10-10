@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { z } from 'zod';
 import { Player } from '../models/Player';
 import { PlayerJoinSessionResponse } from '../models/PlayerJoinSessionResponse';
+import { PlayerDto } from './types';
 
 const registerPlayerSchema = z.object({
     sessionID: z.string(),
@@ -32,14 +33,6 @@ export const registerPlayer = async (req: Request, res: Response) => {
     }
 };
 
-export type PlayerDto = {
-    playerId: string;
-    nickname: string;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
-};
-
 // `${API_URL}/Player/GetPlayer?playerID=${playerId}`
 export function getPlayerData(req: Request, res: Response) {
     const playerId = req.query.playerID;
@@ -53,30 +46,15 @@ export function getPlayerData(req: Request, res: Response) {
         nickname: 'nick',
         firstName: 'Nick',
         lastName: 'Nikola',
-        emailAddress: 'email@email.com',
+        email: 'email@email.com',
+        clerkId: '',
+        clerkUsername: '',
+        imageURL:
+            'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yZzhrOVZydlRZVWgxeU5uaXdibE5uQ1p4YjcifQ',
     };
 
     return res.json(data);
 }
-
-export type UpdatePlayerDto = {
-    playerId?: string;
-    nickname?: string;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    clerkId?: string;
-    clerkUsername?: string;
-    imageURL?: string;
-};
-
-export type UpdatePlayerResponse = {
-    playerId: string;
-    nickname: string;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
-};
 
 //   `${API_URL}/Player/UpdatePlayerData`,
 export function updatePlayerData(req: Request, res: Response) {
@@ -90,7 +68,10 @@ export function updatePlayerData(req: Request, res: Response) {
         nickname: 'UpdatedNick',
         firstName: 'UpdatedFirstName',
         lastName: 'UpdatedLastName',
-        emailAddress: 'updated@email.com',
+        email: 'updated@email.com',
+        clerkId: '',
+        clerkUsername: '',
+        imageURL: '',
     };
 
     return res.json(updatedData);
