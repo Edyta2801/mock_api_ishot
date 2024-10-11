@@ -30,3 +30,20 @@ export type UpdatePlayerResponse = {
     clerkUsername?: string;
     imageURL: string;
 };
+
+export type ScoreDto = {
+    playDate: Date;
+    scoreID: string;
+    operatorID: string;
+    playerID: string;
+    score: string;
+    nickname?: string;
+};
+
+export type PlayerScore = {
+    scoreID: string;
+    sessionId: string;
+    points: number;
+    rank: number;
+    date: Date;
+};

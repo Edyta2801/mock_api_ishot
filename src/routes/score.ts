@@ -6,17 +6,16 @@ import {
     getScoreById,
     getDetailedScoreById,
     getRankedPlayerScores,
-    // getRankedPlayerScores,
+    getSessionsScores,
 } from '../controllers/scoreController.js';
 
 const router: Router = express.Router();
 router.get('/GetPlayerScores', getPlayerScores);
 router.get('/GetDetailedPlayerScores', getDetailedPlayerScores);
-// router.get('/GetRankedPlayerScores', GetRankedPlayerScores);
 router.get('/GetRankedPlayerScores', getRankedPlayerScores);
 router.get('/GetDetailedScore', getDetailedScoreById);
 router.get('/GetScore', getScoreById);
-// router.get('/GetRankedPlayerScores', getRankedPlayerScores);
 router.get('/sessions/:sessionId/:playerId/scores', fetchScores);
+router.get('/GetSessionScores', getSessionsScores);
 
 export default router;
