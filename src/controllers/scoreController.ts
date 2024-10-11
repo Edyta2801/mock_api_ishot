@@ -69,14 +69,31 @@ export async function fetchScores(
             'and player:',
             playerId
         );
+
         const exampleScores: ScoreDto[] = [
             {
                 playDate: new Date(),
                 scoreID: '1',
                 operatorID: 'OP1',
                 playerID: '1',
-                score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
+                score: `[{\"name\":\"Points\",\"value\":\"600\"}, {\"name\":\"Playtime\",\"value\":\"00:32.08\"}, {\"name\":\"Accuracy\",\"value\":\"100.00%\"}, {\"name\":\"Headshots\",\"value\":\"6\"}, {\"name\":\"Shots\",\"value\":\"6\"}, {\"name\":\"Map\",\"value\":\"Factory\"}, {\"name\":\"Mission\",\"value\":\"Duo\"}, {\"name\":\"MissionSettings\",\"value\":\"Robots\"}]`,
                 nickname: 'your-nickname',
+            },
+            {
+                playDate: new Date(),
+                scoreID: '2',
+                operatorID: 'OP1',
+                playerID: '2',
+                score: '[{"name":"Points","value":"1100"}, {"name":"Playtime","value":"00:32.08"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"6"}, {"name":"Shots","value":"6"}, {"name":"Map","value":"Factory"}, {"name":"Mission","value":"Duo"}, {"name":"MissionSettings","value":"Robots"}]',
+                nickname: 'nick',
+            },
+            {
+                playDate: new Date(),
+                scoreID: '3',
+                operatorID: 'OP1',
+                playerID: '3',
+                score: '[{"name":"Points","value":"350"}, {"name":"Playtime","value":"00:31.56"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"1"}, {"name":"Shots","value":"6"}, {"name":"Map","value":"Factory"}, {"name":"Mission","value":"Duo"}, {"name":"MissionSettings","value":"Robots"}]',
+                nickname: 'nickname',
             },
         ];
 

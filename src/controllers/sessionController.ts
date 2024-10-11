@@ -1,16 +1,5 @@
 import { Request, Response } from 'express';
-
-export enum SessionStatus {
-    OPEN = 'Open',
-    PLAYING = 'Playing',
-    CLOSED = 'Closed',
-}
-
-export interface SessionDto {
-    type: string;
-    status: SessionStatus;
-    sessionID: string;
-}
+import { SessionStatus, SessionDto, SessionByPlayerDto } from './types';
 
 // `${API_URL}/Session/GetSessionStatus?sessionID=${sessionId}`
 export function getSessionStatus(req: Request, res: Response): void {
@@ -27,27 +16,13 @@ export function getSessionStatus(req: Request, res: Response): void {
     }
 
     const sessionData: SessionDto = {
-        type: 'one-two-three',
+        type: 'SessionStatus',
         sessionID: sessionId,
         status: sessionStatus,
     };
 
     res.json(sessionData);
 }
-
-export type PlayerDto = {
-    playerId: string;
-    nickname: string;
-    firstName: string;
-    lastName: string;
-    emailAddress: string;
-};
-
-export type SessionByPlayerDto = Pick<SessionDto, 'status' | 'sessionID'> & {
-    status: SessionDto['status'];
-    playerIDs: string[];
-    scoreIDs: string[];
-};
 
 //  `${API_URL}/Session/GetSessionByPlayerID?playerID=${playerId}`
 export function getSessionByPlayerID(req: Request, res: Response) {
@@ -60,10 +35,12 @@ export function getSessionByPlayerID(req: Request, res: Response) {
 
     try {
         const data: SessionByPlayerDto = {
-            sessionID: 'example-session-id',
+            sessionID: '1',
+            operatorID: 'Test',
             status: SessionStatus.OPEN,
-            playerIDs: [playerId],
+            playerIDs: ['1', '2'],
             scoreIDs: ['1', '2'],
+            creationDate: '2024-03-26T11:35:45',
         };
 
         return res.json(data);

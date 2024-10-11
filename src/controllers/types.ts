@@ -47,3 +47,22 @@ export type PlayerScore = {
     rank: number;
     date: Date;
 };
+
+export enum SessionStatus {
+    OPEN = 'Open',
+    PLAYING = 'Playing',
+    CLOSED = 'Closed',
+}
+
+export interface SessionDto {
+    type: string;
+    status: SessionStatus;
+    sessionID: string;
+}
+
+export type SessionByPlayerDto = Pick<SessionDto, 'status' | 'sessionID'> & {
+    playerIDs: string[];
+    scoreIDs: string[];
+    operatorID: string;
+    creationDate: string;
+};
