@@ -60,7 +60,7 @@ export function getPlayerData(req, res) {
             imageURL: 'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yZzhrOVZydlRZVWgxeU5uaXdibE5uQ1p4YjcifQ',
         },
         '2': {
-            playerId: '1',
+            playerId: '2',
             nickname: 'nick2',
             firstName: 'Nina',
             lastName: 'Nikol',

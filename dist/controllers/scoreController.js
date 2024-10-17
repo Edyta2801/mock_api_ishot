@@ -27,16 +27,14 @@ export function getDetailedPlayerScores(req, res) {
     if (!playerId) {
         return res.status(400).json({ error: 'playerID is required' });
     }
-    const scores = [
-        {
-            playDate: new Date(),
-            scoreID: '1',
-            operatorID: 'OP1',
-            playerID: '1',
-            score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
-            nickname: 'your-nickname',
-        },
-    ];
+    const scores = {
+        playDate: new Date(),
+        scoreID: '1',
+        operatorID: 'OP1',
+        playerID: '1',
+        score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
+        nickname: 'your-nickname',
+    };
     return res.json(scores);
 }
 // `http://localhost:3000/api/sessions/${sessionId}/${playerId}/scores`;
@@ -103,14 +101,14 @@ export function getRankedPlayerScores(req, res) {
         },
         {
             scoreID: '2',
-            sessionId: '2',
+            sessionId: '1',
             points: 100,
             rank: 1,
             date: new Date(),
         },
         {
             scoreID: '3',
-            sessionId: '3',
+            sessionId: '1',
             points: 200,
             rank: 1,
             date: new Date(),
@@ -125,16 +123,15 @@ export function getScoreById(req, res) {
         return res.status(400).json({ error: 'scoreID is required' });
     }
     // "2024-06-07T09:45:05"
-    const scores = [
-        {
-            playDate: new Date(),
-            scoreID: '1',
-            operatorID: 'OP1',
-            playerID: '1',
-            score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
-            nickname: 'your-nickname',
-        },
-    ];
+    const scores = {
+        playDate: new Date(),
+        // playDate: '2024-10-17T09:25:31.288Z',
+        scoreID: '1',
+        operatorID: 'OP1',
+        playerID: '1',
+        score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
+        nickname: 'your-nickname',
+    };
     return res.json(scores);
 }
 // `${API_URL}/Score/GetDetailedScore?scoreID=${scoreId}`
@@ -143,16 +140,14 @@ export function getDetailedScoreById(req, res) {
     if (!scoreId) {
         return res.status(400).json({ error: 'scoreID is required' });
     }
-    const scores = [
-        {
-            playDate: new Date(),
-            scoreID: '1',
-            operatorID: 'OP1',
-            playerID: '1',
-            score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
-            nickname: 'your-nickname',
-        },
-    ];
+    const scores = {
+        playDate: new Date(),
+        scoreID: '1',
+        operatorID: 'OP1',
+        playerID: '1',
+        score: '[{"name":"Points","value":"1975"}, {"name":"Playtime","value":"00:12.93"}, {"name":"Accuracy","value":"100.00%"}, {"name":"Headshots","value":"9"}]',
+        nickname: 'your-nickname',
+    };
     return res.json(scores);
 }
 // `${API_URL}/Score/GetSessionScores?sessionID=${sessionId}`
