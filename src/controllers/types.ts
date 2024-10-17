@@ -32,7 +32,7 @@ export type UpdatePlayerResponse = {
 };
 
 export type ScoreDto = {
-    playDate: Date;
+    playDate: string | Date;
     scoreID: string;
     operatorID: string;
     playerID: string;

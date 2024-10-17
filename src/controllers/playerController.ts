@@ -34,26 +34,89 @@ export const registerPlayer = async (req: Request, res: Response) => {
 };
 
 // `${API_URL}/Player/GetPlayer?playerID=${playerId}`
+// export function getPlayerData(req: Request, res: Response) {
+//     const playerId = req.query.playerID;
+
+//     if (!playerId) {
+//         return res.status(400).json({ error: 'playerID is required' });
+//     }
+
+//     const data: PlayerDto = {
+//         playerId: '1',
+//         nickname: 'nick',
+//         firstName: 'Nick',
+//         lastName: 'Nikola',
+//         email: 'email@email.com',
+//         clerkId: '',
+//         clerkUsername: '',
+//         imageURL:
+//             'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yZzhrOVZydlRZVWgxeU5uaXdibE5uQ1p4YjcifQ',
+//     };
+
+//     return res.json(data);
+// }
+
+// `${API_URL}/Player/GetPlayer?playerID=${playerId}`
 export function getPlayerData(req: Request, res: Response) {
-    const playerId = req.query.playerID;
+    const playerId = req.query.playerID as string;
 
     if (!playerId) {
         return res.status(400).json({ error: 'playerID is required' });
     }
 
-    const data: PlayerDto = {
-        playerId: '1',
-        nickname: 'nick',
-        firstName: 'Nick',
-        lastName: 'Nikola',
-        email: 'email@email.com',
-        clerkId: '',
-        clerkUsername: '',
-        imageURL:
-            'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yZzhrOVZydlRZVWgxeU5uaXdibE5uQ1p4YjcifQ',
+    const players: Record<string, PlayerDto> = {
+        '1': {
+            playerId: '1',
+            nickname: 'nick1',
+            firstName: 'Nick',
+            lastName: 'Nikola',
+            email: 'nick1@email.com',
+            clerkId: '',
+            clerkUsername: '',
+            imageURL:
+                'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yZzhrOVZydlRZVWgxeU5uaXdibE5uQ1p4YjcifQ',
+        },
+        '2': {
+            playerId: '2',
+            nickname: 'nick2',
+            firstName: 'Nina',
+            lastName: 'Nikol',
+            email: 'nick2@email.com',
+            clerkId: '',
+            clerkUsername: '',
+            imageURL:
+                'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18ycXhrQ3VKVVZkcm5oYVNZQnZlVGtiNkZ3T3cifQ',
+        },
+        '3': {
+            playerId: '3',
+            nickname: 'nick3',
+            firstName: 'Niko',
+            lastName: 'Nikolaos',
+            email: 'nick3@email.com',
+            clerkId: '',
+            clerkUsername: '',
+            imageURL:
+                'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18xZjR5NVZXem5lbTZLWHhIVmpTV2tvTmJMVHcifQ',
+        },
     };
 
-    return res.json(data);
+    let playerData = players[playerId];
+
+    if (!playerData) {
+        playerData = {
+            playerId: playerId,
+            nickname: 'Guest',
+            firstName: 'Unknown',
+            lastName: 'Player',
+            email: 'guest@example.com',
+            clerkId: '',
+            clerkUsername: '',
+            imageURL:
+                'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18xZjR5NVZXem5lbTZLWHhIVmpTV2tvTmJMVHcifQ',
+        };
+    }
+
+    return res.json(playerData);
 }
 
 //   `${API_URL}/Player/UpdatePlayerData`,

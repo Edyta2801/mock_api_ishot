@@ -1,9 +1,4 @@
-export var SessionStatus;
-(function (SessionStatus) {
-    SessionStatus["OPEN"] = "Open";
-    SessionStatus["PLAYING"] = "Playing";
-    SessionStatus["CLOSED"] = "Closed";
-})(SessionStatus || (SessionStatus = {}));
+import { SessionStatus } from './types';
 // `${API_URL}/Session/GetSessionStatus?sessionID=${sessionId}`
 export function getSessionStatus(req, res) {
     const sessionId = req.query.sessionID;
@@ -18,7 +13,7 @@ export function getSessionStatus(req, res) {
         sessionStatus = SessionStatus.CLOSED;
     }
     const sessionData = {
-        type: 'one-two-three',
+        type: 'SessionStatus',
         sessionID: sessionId,
         status: sessionStatus,
     };
@@ -32,10 +27,12 @@ export function getSessionByPlayerID(req, res) {
     }
     try {
         const data = {
-            sessionID: 'example-session-id',
+            sessionID: '1',
+            operatorID: 'Test',
             status: SessionStatus.OPEN,
-            playerIDs: [playerId],
+            playerIDs: ['1', '2'],
             scoreIDs: ['1', '2'],
+            creationDate: '2024-03-26T11:35:45',
         };
         return res.json(data);
     }
