@@ -29,22 +29,18 @@ The following pages of the application display the results and statistics for pl
 
 ## Endpoints
 
--   GET /Session
--                     /GetSessionStatus
--                     /GetSessionByPlayerID
-
+-   GET /Session/GetSessionStatus
+-   GET /Session/GetSessionByPlayerID
 -   GET /Player/GetPlayer
 -   PUT /Player/UpdatePlayerData
 -   POST /Player/Player/Register
 -   GET /api/sessions/:sessionId/:playerId/scores
-
--   GET /Score
--                     /GetPlayerScores
--                     /GetDetailedPlayerScores
--                     /GetRankedPlayerScores
--                     /GetDetailedScore
--                     /GetScore
--                     /GetSessionScores
+-   GET /Score/GetPlayerScores
+-   GET /Score/GetDetailedPlayerScores
+-   GET /Score/GetRankedPlayerScores
+-   GET /Score/GetDetailedScore
+-   GET /Score/GetScore
+-   GET /Score/GetSessionScores
 
 ## Project Structure
 
